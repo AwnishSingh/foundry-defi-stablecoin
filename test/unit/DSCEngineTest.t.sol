@@ -46,14 +46,14 @@ contract DSCEngineTest is Test {
         new DSCEngine(tokenAddresses, priceFeedsAddresses, address(dsc));
     }
 
-    function testGetUsdValue() public view {
+    function testGetUsdValue() public {
         uint256 ethAmount = 15e18;
         uint256 expectedUsd = 30000e18;
         uint256 actualUsd = dsce.getUsdValue(weth, ethAmount);
         assertEq(expectedUsd, actualUsd);
     }
 
-    function testGetTokenAmountFromUsd() public view {
+    function testGetTokenAmountFromUsd() public {
         uint256 usdAmount = 100 ether;
         uint256 expectedTokenAmount = 0.05 ether;
         uint256 actualTokenAmount = dsce.getTokenAmountFromUsd(weth, usdAmount);
@@ -384,22 +384,22 @@ contract DSCEngineTest is Test {
     ///////////////////////////////////
     // View & Pure Function Tests //
     //////////////////////////////////
-    function testGetCollateralTokenPriceFeed() public view {
+    function testGetCollateralTokenPriceFeed() public {
         address priceFeed = dsce.getCollateralTokenPriceFeed(weth);
         assertEq(priceFeed, ethUsdPriceFeed);
     }
 
-    function testGetCollateralTokens() public view {
+    function testGetCollateralTokens() public {
         address[] memory collateralTokens = dsce.getCollateralTokens();
         assertEq(collateralTokens[0], weth);
     }
 
-    function testGetMinHealthFactor() public view {
+    function testGetMinHealthFactor() public {
         uint256 minHealthFactor = dsce.getMinHealthFactor();
         assertEq(minHealthFactor, MIN_HEALTH_FACTOR);
     }
 
-    function testGetLiquidationThreshold() public view {
+    function testGetLiquidationThreshold() public {
         uint256 liquidationThreshold = dsce.getLiquidationThreshold();
         assertEq(liquidationThreshold, LIQUIDATION_THRESHOLD);
     }
@@ -429,12 +429,12 @@ contract DSCEngineTest is Test {
         assertEq(collateralValue, expectedCollateralValue);
     }
 
-    function testGetDsc() public view {
+    function testGetDsc() public {
         address dscAddress = dsce.getDsc();
         assertEq(dscAddress, address(dsc));
     }
 
-    function testLiquidationPrecision() public view {
+    function testLiquidationPrecision() public {
         uint256 expectedLiquidationPrecision = 100;
         uint256 actualLiquidationPrecision = dsce.getLiquidationPrecision();
         assertEq(actualLiquidationPrecision, expectedLiquidationPrecision);
